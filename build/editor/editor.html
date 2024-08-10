@@ -1,0 +1,700 @@
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>Hubble js-sdk 在线使用编辑器</title>
+    <!-- load ace -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="./Tiny-editor.css"/>
+    <script type="text/javascript">
+        (function(document,datracker,root){var help={};help.cookie={get:function(name){var nameEQ=name+"=";var ca=document.cookie.split(";");for(var i=0;i<ca.length;i++){var c=ca[i];while(c.charAt(0)==" "){c=c.substring(1,c.length)}if(c.indexOf(nameEQ)===0){return decodeURIComponent(c.substring(nameEQ.length,c.length))}}return null},parse:function(name){var cookie;try{cookie=_.JSONDecode(_.cookie.get(name))||{}}catch(err){}return cookie},set:function(name,value,days,cross_subdomain,is_secure){var cdomain="",expires="",secure="";if(cross_subdomain){var matches=document.location.hostname.match(/[a-z0-9][a-z0-9\-]+\.[a-z\.]{2,6}$/i),domain=matches?matches[0]:"";cdomain=((domain)?"; domain=."+domain:"")}if(days){var date=new Date();date.setTime(date.getTime()+(days*24*60*60*1000));expires="; expires="+date.toGMTString()}if(is_secure){secure="; secure"}var new_cookie_val=name+"="+encodeURIComponent(value)+expires+"; path=/"+cdomain+secure;document.cookie=new_cookie_val;return new_cookie_val},remove:function(name,cross_subdomain){_.cookie.set(name,"",-1,cross_subdomain)}};root.getHubbleJSSDKVersions=function(version){help.cookie.set("mp_versions_hubble_jsSDK",version,false,true);loadJsSDK()};function removeElement(_element){var _parentElement=_element.parentNode;if(_parentElement){_parentElement.removeChild(_element)}}function addScriptTag(src){var loaded;var head=document.getElementsByTagName("head")[0];var script=document.createElement("script");var localVersion=help.cookie.get("mp_versions_hubble_jsSDK");script.setAttribute("type","text/javascript");script.src=src;script.onload=script.onreadystatechange=function(){if(!loaded&&(!script.readyState||/loaded|complete/.test(script.readyState))){script.onload=script.onreadystatechange=null;loaded=true;removeElement(script)}};head.appendChild(script)}function addScriptTagTwo(url,fn){var isFirst=true;var iframe;try{iframe=document.createElement("iframe");iframe.style.display="none"}catch(e){iframe=document.createElement("iframe");iframe.setAttribute("src",url)}var loadfn=function(){if(isFirst){iframe.contentWindow.location="about:blank";isFirst=false}else{fn(iframe.contentWindow.name);iframe.contentWindow.document.write("");iframe.contentWindow.close();document.body.removeChild(iframe);iframe.src="";iframe=null}};iframe.src=url;if(iframe.attachEvent){iframe.attachEvent("onload",loadfn)}else{iframe.onload=loadfn}if(iframe){document.body.appendChild(iframe)}}function loadJsSDK(){var localVersion=help.cookie.get("mp_versions_hubble_jsSDK");var HUBBLE_LIB_URL="https://hubble.netease.com/track/w/DATracker.globals.js";var script,first_script;script=document.createElement("script");script.type="text/javascript";script.async=true;if(localVersion){HUBBLE_LIB_URL="https://hubble-js-bucket.nosdn.127.net/"+localVersion+".js"}script.src=HUBBLE_LIB_URL;first_script=document.getElementsByTagName("script")[0];first_script.parentNode.insertBefore(script,first_script)}if(!datracker["__SV"]){var win=window;try{var getHashParam,matches,state,loc=win.location,hash=loc.hash;getHashParam=function(hash,param){matches=hash.match(new RegExp(param+"=([^&]*)"));return matches?matches[1]:null};if(hash&&getHashParam(hash,"state")){state=JSON.parse(decodeURIComponent(getHashParam(hash,"state")));if(state["action"]==="mpeditor"){win.sessionStorage.setItem("_mpcehash",hash);history.replaceState(state["desiredHash"]||"",document.title,loc.pathname+loc.search)}}}catch(e){}var gen_fn,functions,i,lib_name="DATracker";window[lib_name]=datracker;datracker["_i"]=[];datracker["init"]=function(token,config,name){var target=datracker;if(typeof(name)!=="undefined"){target=datracker[name]=[]}else{name=lib_name}target["people"]=target["people"]||[];target["abtest"]=target["abtest"]||[];target["toString"]=function(no_stub){var str=lib_name;if(name!==lib_name){str+="."+name}if(!no_stub){str+=" (stub)"}return str};target["people"]["toString"]=function(){return target.toString(1)+".people (stub)"};function _set_and_defer(target,fn){var split=fn.split(".");if(split.length==2){target=target[split[0]];fn=split[1]}target[fn]=function(){target.push([fn].concat(Array.prototype.slice.call(arguments,0)))}}functions="track_heatmap register_attributes register_attributes_once clear_attributes unregister_attributes current_attributes single_pageview disable time_event get_appStatus track set_userId track_pageview track_links track_forms register register_once alias unregister identify login logout signup name_tag set_config reset people.set people.set_once people.set_realname people.set_country people.set_province people.set_city people.set_age people.set_gender people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.set_populationWithAccount  people.set_location people.set_birthday people.set_region people.set_account abtest.get_variation abtest.async_get_variable".split(" ");for(i=0;i<functions.length;i++){_set_and_defer(target,functions[i])}datracker["_i"].push([token,config,name])
+        };datracker["__SV"]=1.6}if(!help.cookie.get("mp_versions_hubble_jsSDK")){addScriptTag("https://hubble.netease.com/track/w/version.js?random"+Math.random())}else{loadJsSDK()}})(document,window["DATracker"]||[],window);
+        //初始化
+        //注意： 在Hubble平台创建一个类型为`Web`应用，复制对应的appkey，替换下面的 `MA-883D-4FFC199551FF`
+        //DATracker.init('MA-883D-4FFC199551FF', {truncateLength: 255,persistence: "localStorage",cross_subdomain_cookie: false});
+    </script>
+</head>
+<body>
+
+
+
+
+<div id="tabPlugin" class="tabPlugin">
+    <ul id="tabControls">
+        <li onclick="Tiny.tab(1)">HTML</li>
+        <li onclick="Tiny.tab(2)">CSS</li>
+        <li onclick="Tiny.tab(3)">JavaScript</li>
+        <li onclick="Tiny.tab(4);Tiny.run()" id="resultTab">打印结果</li>
+    </ul>
+    <a class="run button" onclick="Tiny.run()">执行</a>
+    <a class="save button" onclick="Tiny.save()">保存</a>
+    <a class="full button" onclick="Tiny.fullScreen()">全屏</a>
+    <a class="dock button" onclick="Tiny.dockMode()" id="dockButton">锁住窗口</a>
+    <a class="live button hide" onclick="Tiny.liveMode()" id="liveButton">活动窗口</a>
+    <select name="" id="theme"></select>
+    <div class="tabContainer">
+       <pre id='html' style="font-size: 16px;">
+        &lt;pre&gt; 
+        &lt;/pre&gt; 
+        </pre>
+    </div>
+
+    <div class="tabContainer">
+        <pre id= 'css' style="font-size: 16px;">
+pre{
+    color:red;
+}
+        </pre>
+    </div>
+
+
+    <div class="tabContainer">
+        <pre id='js' style="font-size: 16px;">
+            var $pre = window.frames['iframe'].document.getElementsByTagName('pre')[0];
+            var isJSON = typeof window.JSON === 'object' ? true : false;
+            var before = function(datracker) {
+                datracker.debug = function(sendData) {
+                    var b = new Base64();  
+                    var node=document.createElement("pre");
+                    if(isJSON) {
+                        node.innerHTML = JSON.stringify(JSON.parse(b.decode(sendData.data)), undefined, 2);
+                    } else {
+                        node.innerHTML = _.JSONDecode(_.JSONEncode(b.decode(sendData.data)));
+                    }
+                    $pre.insertBefore(node, $pre.childNodes[0]);
+                    $pre.innerHTML = JSON.stringify(JSON.parse(b.decode(sendData.data)), undefined, 2);;
+                };
+                datracker.pageview_attributes = {
+                    test: '12344'
+                };
+            };
+            // 未初始化，初始化sdk
+            if (!DATracker.__loaded) {
+                DATracker.init('MA-883D-4FFC199551FF', {debug: true, loaded: before,
+                    abtest: {
+                        // 开启A/B 实验
+                        enable_abtest: true,
+                        interval_mins_abtest: 0
+                    }
+                });
+            }
+
+            <!-- const help = {
+                post: function(url, options, callback, timeout) {
+                  var that = this;  
+                  that.callback = callback || function(params) {};  
+                  try {
+                      var req = new XMLHttpRequest();
+                      req.open('POST', url, true);
+                      req.setRequestHeader("Content-type","application/json");
+                      req.withCredentials = true;
+                      req.ontimeout = function() {
+                          that.callback({status: 0, error: true, message: 'request ' +url + ' time out'});
+                      };
+                      req.onreadystatechange = function () {
+                          if (req.readyState === 4) {
+                              if (req.status === 200) {
+                                  that.callback(_.JSONDecode(req.responseText), options.userId);
+                              } else {
+                                  var message = 'Bad HTTP status: ' + req.status + ' ' + req.statusText;
+                                  that.callback({status: 0, error: true, message: message});
+                              }
+                          }
+                      };
+                      req.timeout = timeout || 5000;
+                      req.send(_.JSONEncode(options));
+                  } catch (e) {}
+                }
+              };
+
+              // 参与实验的用户
+              let getTestPeopleObj = {
+                // 个数
+                num: 0,
+                // 参与实验的用户列表
+                userIdArr: []
+              };
+              // 不参与（拉不到配置）的用户
+              let notTestPeopleObj = {
+                // 个数
+                num: 0,
+                // 没有参与实验的用户列表
+                userIdArr: []
+              };
+              // 总的参加用户数计数
+              let AllPeopleNum = 0;
+              
+              // 这里预定义要测试定向的用户总数
+              const people = 10;
+              // 这里预定义要参与实验的用户，值不能大于 people
+              const joinPeople = 5;
+
+              var $pre = window.frames['iframe'].document.getElementsByTagName('pre')[0];
+              
+              // 编程实验
+              function test(userId, abtestVariables, variablesValue) {
+                const callback = function(response, userId) {
+                  AllPeopleNum += 1;
+                  if (response.code === 200) {
+                    // 这个用户参与了实验
+                    if (response.data.variables[abtestVariables] && response.data.variables[abtestVariables] === variablesValue) {
+                      getTestPeopleObj.num ++;
+                      getTestPeopleObj.userIdArr.push(userId);
+                    } else {
+                      notTestPeopleObj.num ++;
+                      notTestPeopleObj.userIdArr.push(userId);
+                    }
+                  }
+                  
+                  if (AllPeopleNum >= people) {
+                    const node=document.createElement("pre");
+                    node.innerHTML = JSON.stringify( {
+                      '参与的用户集合': getTestPeopleObj,
+                      '没有参与用户集合':   notTestPeopleObj
+                    } , undefined, 2);
+                    $pre.insertBefore(node, $pre.childNodes[0]);
+                  }
+                };
+              
+                help.post(
+                  'http://qa.hubble.netease.com/cc/a_exp',
+                  {
+                    appKey: "MA-883D-4FFC199551FF",
+                    userId: userId || ( 'not-' + Math.random()* 10000000),
+                    property: {
+                      // 设备的操作系统
+                      deviceOs: 'windows',
+                      // 设备的操作系统版本
+                      deviceOsVersion: 'win7',
+                      // 屏幕的宽度
+                      screenWidth: 1200,
+                      // 屏幕的高度
+                      screenHeight: 1000,
+                      // 设备的平台
+                      devicePlatform: 'web',
+                      // 网页打开场景
+                      pageOpenScene: 'Browser'
+                    }
+                  },
+                  callback
+                )
+              }
+
+              // 要参与实验的用户列表
+              // const pp = ["p929786014", "p1495871371196", "p284615879", "p943774905", "p586343825"];
+
+              let pp = [];
+
+              // 这里贴拿到的值（用户分群里）  hwi/UserGroup/getUserList
+              //let valueDD = {"success":true,"errorCode":200,"message":"成功","relatedObject":{"result":[{"userid":"p929786014","$account":"p929786014","$realname":"喻欣源","$birthday":"1989-4-15","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel18904340037vip3","activationtime":1.526400065E12,"lastusetime":1.52648703134E12,"deviceudid_web":"909ce819-5fa7-404a-b586-a0a77706d157","productid":"999"},{"userid":"p1495871371196","$account":"p1495871371196","$realname":"雷������","$birthday":"1982-10-25","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel18909302324vip4","activationtime":1.496316300338E12,"lastusetime":1.496316307221E12,"deviceudid_web":"3c6d9399-275b-4a46-8e30-ce46c6c9a1cf","productid":"999"},{"userid":"p284615879","$account":"p284615879","$realname":"穆佳昊","$birthday":"1998-5-07","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13016437426vip4","activationtime":1.497369619283E12,"lastusetime":1.497956721469E12,"deviceudid_web":"af738a06-7ed1-479e-87ad-eedd902059ff","productid":"999"},{"userid":"p943774905","$account":"p943774905","$realname":"皮一鸣","$birthday":"1987-6-19","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel18750326142vip5","activationtime":1.496736908912E12,"lastusetime":1.496741074617E12,"deviceudid_web":"bfbc90c9-a268-4551-a4d6-e2854961fca8","productid":"999"},{"userid":"p586343825","$account":"p586343825","$realname":"曹溶溶","$birthday":"1980-1-29","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel17000050564vip2","activationtime":1.510502465E12,"lastusetime":1.510762718405E12,"deviceudid_web":"59467545-75fe-4d8b-b77f-c3511f1f5953","productid":"999"},{"userid":"p604424523","$account":"p604424523","$realname":"严冰枫","$birthday":"1987-6-18","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13384262100vip4","activationtime":1.499097920768E12,"lastusetime":1.49918448101E12,"deviceudid_web":"d28577bd-b64f-4da7-8fd6-a22138da48f5","productid":"999"},{"userid":"p841818011","$account":"p841818011","$realname":"汤佳怡","$birthday":"1979-10-05","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13336971307vip1","activationtime":1.516118465E12,"lastusetime":1.516206141933E12,"deviceudid_web":"80fb2bbe-0629-4667-95df-2d96e32edc8a","productid":"999"},{"userid":"p976582961","$account":"p976582961","$realname":"皮一鸣","$birthday":"1984-7-01","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel18957265445vip4","activationtime":1.496375804554E12,"lastusetime":1.496649000326E12,"deviceudid_web":"ea4b0468-9184-44be-a89d-a8dafeb0f2f5","productid":"999"},{"userid":"p861815205","$account":"p861815205","$realname":"鲁淳美","$birthday":"1988-10-29","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel18930967114vip3","activationtime":1.503072703926E12,"lastusetime":1.503159247911E12,"deviceudid_web":"f77382d7-5205-4610-9349-b63cde057cd2","productid":"999"},{"userid":"p672765458","$account":"p672765458","$realname":"钱淼","$birthday":"1994-4-12","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13217845328vip4","activationtime":1.531152065E12,"lastusetime":1.531412556708E12,"deviceudid_web":"edfa2e20-dff4-4d0f-8765-274346053348","productid":"999"},{"userid":"p313420297","$account":"p313420297","$realname":"鲍子辰","$birthday":"1980-7-19","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13882908073vip4","activationtime":1.505059538543E12,"lastusetime":1.505146461421E12,"deviceudid_web":"270e2c0d-0577-4531-ab39-8330fda6a7f5","productid":"999"},{"userid":"p722919790","$account":"p722919790","$realname":"彭涵涵","$birthday":"1990-11-28","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13875141043vip5","lastusetime":1.512749205352E12,"deviceudid_web":"d5641a28-f4ad-4791-8492-cb1f1c5a7e45","productid":"999"},{"userid":"p562670546","$account":"p562670546","$realname":"喻欣源","$birthday":"1999-12-31","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13796849878vip2","activationtime":1.509984065E12,"lastusetime":1.510070997031E12,"deviceudid_web":"f290804c-cd2c-4c5d-a568-2366487fa8aa","productid":"999"},{"userid":"p640555767","$account":"p640555767","$realname":"褚晨涛","$birthday":"1992-12-18","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13053552796vip1","lastusetime":1.517674683047E12,"deviceudid_web":"d18d0f42-affb-4ba5-a225-823d89eacf93","productid":"999"},{"userid":"p759773821","$account":"p759773821","$realname":"沈益辰","$birthday":"1976-8-09","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel17090143845vip2","activationtime":1.497322864017E12,"lastusetime":1.497339926374E12,"deviceudid_web":"25673de2-c828-4af8-bbcc-61d1df681f39","productid":"999"},{"userid":"p488102814","$account":"p488102814","$realname":"金宜豪","$birthday":"1981-10-08","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13209269314vip2","lastusetime":1.507046799756E12,"deviceudid_web":"d13cc703-e654-4390-b4a6-d8e2dee527ce","productid":"999"},{"userid":"p400885303","$account":"p400885303","$realname":"郑敏","$birthday":"1986-12-08","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13054576335vip2","activationtime":1.521561665E12,"lastusetime":1.521649444016E12,"deviceudid_web":"718872fa-af6e-429f-a7c6-8520e166231f","productid":"999"},{"userid":"p404248215","$account":"p404248215","$realname":"吴甜","$birthday":"1985-5-17","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel18759418783vip5","activationtime":1.498752336422E12,"lastusetime":1.524021661613E12,"deviceudid_web":"0204befb-0409-407c-a6fb-aed0763295d3","productid":"999"},{"userid":"p422469523","$account":"p422469523","$realname":"汤佳怡","$birthday":"1992-10-02","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel18939461044vip3","activationtime":1.514908865E12,"lastusetime":1.514996308643E12,"deviceudid_web":"62c856f0-4573-42df-b622-82eaf3856ebc","productid":"999"},{"userid":"p855594998","$account":"p855594998","$realname":"卫昊轩","$birthday":"1987-6-25","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel18780737899vip1","activationtime":1.526054465E12,"lastusetime":1.526141744468E12,"deviceudid_web":"535490a6-6c06-4ae5-b9cf-558cc8be296f","productid":"999"},{"userid":"p312218561","$account":"p312218561","$realname":"曹溶溶","$birthday":"1982-8-25","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13293914890vip5","activationtime":1.497340033684E12,"lastusetime":1.497347405156E12,"deviceudid_web":"7ee435ac-f029-49c6-8580-a792b9e3dc70","productid":"999"},{"userid":"p211821214","$account":"p211821214","$realname":"贺泽远","$birthday":"1988-11-02","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13365937112vip4","activationtime":1.502208350135E12,"lastusetime":1.502295367254E12,"deviceudid_web":"589435f1-2db7-4593-aee1-17a067bc96f8","productid":"999"},{"userid":"p537843273","$account":"p537843273","$realname":"卜清妍","$birthday":"1999-9-16","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel17027966172vip1","activationtime":1.517241665E12,"lastusetime":1.517328377744E12,"deviceudid_web":"aca22377-4724-43af-b4ad-155df4394c66","productid":"999"},{"userid":"p528587913","$account":"p528587913","$realname":"汤佳怡","$birthday":"1992-2-22","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel18960271881vip1","activationtime":1.503159402352E12,"lastusetime":1.50324557114E12,"deviceudid_web":"49967e38-2df9-45e4-89f5-946a6f6d24ec","productid":"999"},{"userid":"p607662199","$account":"p607662199","$realname":"钱淼","$birthday":"1999-11-10","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13005808372vip2","activationtime":1.502294808927E12,"lastusetime":1.502381681153E12,"deviceudid_web":"84fe483c-d29d-4040-be1a-383b6ecda28a","productid":"999"},{"userid":"p282535203","$account":"p282535203","$realname":"毕运昊","$birthday":"1997-1-01","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel18727081362vip1","activationtime":1.532361665E12,"lastusetime":1.532448847537E12,"deviceudid_web":"f4a55269-1564-47c6-a89f-37fd42fcf96e","productid":"999"},{"userid":"p690358696","$account":"p690358696","$realname":"唐紫轩","$birthday":"1976-12-30","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13017319950vip3","activationtime":1.525363265E12,"lastusetime":1.525450696627E12,"deviceudid_web":"eec36688-f7d1-4163-98eb-5f2366088880","productid":"999"},{"userid":"p801233588","$account":"p801233588","$realname":"杨益冉","$birthday":"1983-4-29","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13761947627vip3","activationtime":1.507478040936E12,"lastusetime":1.507738383244E12,"deviceudid_web":"2ec9042c-d6f4-4b48-8b9e-fc432e1b7962","productid":"999"},{"userid":"p691294514","$account":"p691294514","$realname":"安晶滢","$birthday":"1991-9-16","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13394456828vip1","activationtime":1.527523265E12,"lastusetime":1.528214924052E12,"deviceudid_web":"982edcdc-86e1-4232-b40e-f7ea6e44b115","productid":"999"},{"userid":"p649660931","$account":"p649660931","$realname":"卫昊轩","$birthday":"1990-4-07","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13767148378vip3","activationtime":1.502553939338E12,"lastusetime":1.502813642992E12,"deviceudid_web":"35523426-0586-48e7-a6a9-568a57fecb7b","productid":"999"},{"userid":"p538644044","$account":"p538644044","$realname":"萧天昊","$birthday":"1976-10-26","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13336604468vip3","activationtime":1.532361665E12,"lastusetime":1.532449071731E12,"deviceudid_web":"ea83bb3e-6688-4be4-9bcd-57a8d9ddd861","productid":"999"},{"userid":"p505592853","$account":"p505592853","$realname":"尹萌萌","$birthday":"1982-7-11","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13795312238vip3","activationtime":1.499357404866E12,"lastusetime":1.49944439985E12,"deviceudid_web":"0c01a192-31a2-48de-ad4d-5a88ba8b393a","productid":"999"},{"userid":"p665384260","$account":"p665384260","$realname":"穆佳昊","$birthday":"1995-7-01","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13057262344vip1","activationtime":1.497339381508E12,"lastusetime":1.497347681059E12,"deviceudid_web":"a7c99af2-8870-40a9-9401-35a035c3fb74","productid":"999"},{"userid":"p544024657","$account":"p544024657","$realname":"韦泽惠","$birthday":"1987-2-08","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13818418465vip1","activationtime":1.507910042355E12,"lastusetime":1.507997953321E12,"deviceudid_web":"b8eb124b-cbe0-4d31-9fbe-216dfac60013","productid":"999"},{"userid":"p199560013","$account":"p199560013","$realname":"康添昊","$birthday":"1975-12-01","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel17015073622vip5","activationtime":1.519056065E12,"lastusetime":1.519137992519E12,"deviceudid_web":"3bae6efb-de3e-4ca7-8e26-2061c06a1266","productid":"999"},{"userid":"p262219777","$account":"p262219777","$realname":"水榕润","$birthday":"1979-8-20","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13793160344vip4","activationtime":1.498925482157E12,"lastusetime":1.499012494658E12,"deviceudid_web":"7dc6e35f-aa52-420f-b7bb-214c182d8a27","productid":"999"},{"userid":"p852348804","$account":"p852348804","$realname":"余雅晗","$birthday":"1989-3-27","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel18915186131vip4","activationtime":1.499357764072E12,"lastusetime":1.499617468854E12,"deviceudid_web":"af64f540-df33-46b0-b09d-b88bc4761b4a","productid":"999"},{"userid":"p392322702","$account":"p392322702","$realname":"尤春齐","$birthday":"1995-5-10","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13332332239vip1","activationtime":1.497339301743E12,"lastusetime":1.497346886147E12,"deviceudid_web":"231a78da-760f-471f-96b6-7309792401e6","productid":"999"},{"userid":"p354955421","$account":"p354955421","$realname":"史佳琪","$birthday":"1978-6-19","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13109077020vip1","activationtime":1.509811265E12,"lastusetime":1.509898953527E12,"deviceudid_web":"6049f600-4ec5-43f0-9a53-b854fcc2aba5","productid":"999"},{"userid":"p136024163","$account":"p136024163","$realname":"廉昕蕊","$birthday":"1999-11-15","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13052552099vip4","activationtime":1.504886776277E12,"lastusetime":1.504973581808E12,"deviceudid_web":"95ff6706-1f36-4e31-b118-2b985dd2ebfe","productid":"999"},{"userid":"p243957829","$account":"p243957829","$realname":"汤佳怡","$birthday":"1987-5-04","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13250606167vip4","activationtime":1.507910040921E12,"lastusetime":1.507997825604E12,"deviceudid_web":"2b57f8a0-a166-4bd3-8a6d-9ce3d05f143d","productid":"999"},{"userid":"p356509650","$account":"p356509650","$realname":"许杨","$birthday":"1989-12-29","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13899730574vip1","activationtime":1.521907265E12,"lastusetime":1.521994448135E12,"deviceudid_web":"5fc05d58-68aa-4692-888c-20888915fc73","productid":"999"},{"userid":"p945844514","$account":"p945844514","$realname":"范佳欣","$birthday":"1987-11-23","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13039001241vip3","activationtime":1.509724865E12,"lastusetime":1.50981170395E12,"deviceudid_web":"0543d0a6-1967-489c-9c03-a8d5e460f4f2","productid":"999"},{"userid":"p431827733","$account":"p431827733","$realname":"张浩晨","$birthday":"1995-8-27","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13879592763vip5","activationtime":1.503763585085E12,"lastusetime":1.504023761505E12,"deviceudid_web":"23e8e431-9ef6-47b4-9084-53dcdd404264","productid":"999"},{"userid":"p492560592","$account":"p492560592","$realname":"薛明远","$birthday":"1976-12-11","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13185792877vip3","activationtime":1.525363265E12,"lastusetime":1.525450223755E12,"deviceudid_web":"aeab1e2c-c3d5-4188-be69-cd15c4c2c0ee","productid":"999"},{"userid":"p334330883","$account":"p334330883","$realname":"汤佳怡","$birthday":"1975-8-07","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13080573654vip4","activationtime":1.512057665E12,"lastusetime":1.512144942754E12,"deviceudid_web":"da1cf50d-f94e-42b2-a603-55229f3fa6d3","productid":"999"},{"userid":"p284614974","$account":"p284614974","$realname":"王尚","$birthday":"1996-5-14","$age":"未知","$gender":"男","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13074985048vip1","activationtime":1.498734809898E12,"lastusetime":1.498753286646E12,"deviceudid_web":"22041d58-2889-404c-988b-14945a2dc6ec","productid":"999"},{"userid":"p457279031","$account":"p457279031","$realname":"柳嘉怡","$birthday":"1991-12-12","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel13116180836vip5","activationtime":1.496389929234E12,"lastusetime":1.497239443945E12,"deviceudid_web":"9ecb60fb-2d30-4587-b42d-402746410895","productid":"999"},{"userid":"p902296258","$account":"p902296258","$realname":"水榕润","$birthday":"1993-7-19","$age":"未知","$gender":"女","$country":"中国","$province":"浙江","$city":"杭州","attributes":"FCTS\u0002\u0000\u0016\u0000\u0000\u0000\u0003\u0000\u000B\u0000$\u0000\u0000\u0000\u0003\u0000\u0001\u0000Tel17035078887vip3","activationtime":1.528473665E12,"lastusetime":1.531153217109E12,"deviceudid_web":"b1c5790c-d848-4f11-8ee7-ab13c0eea237","productid":"999"}],"total":49,"name":"定向-用户属性-省份为浙江"}}
+             
+
+              for (let k = 0; k < valueDD.relatedObject.result.length; k += 1) {
+                if (pp.length < joinPeople) {
+                    pp.push(valueDD.relatedObject.result[k]['userid']) 
+                }
+              }
+
+
+
+
+              // 第一个 userid， 第二个 实验变量 ， 第三个  版本值
+              // test('hzwangyang1', 'abtest', 'new');
+
+              // 已参与实验用户
+              for (let i = 0; i < pp.length; i += 1) {
+                test(pp[i], 'abtest', 'new');
+              }
+              // 未参与实验用户 
+              for (let k = 0; k < people - pp.length; k += 1) {
+                test('', 'abtest', 'new');
+              } -->
+
+
+
+        </pre>
+
+    </div>
+    <div class="tabContainer" id="dockIframe">
+        <div class="split-line" id="splitLine"></div>
+        <iframe class="iframe" id="iframe" sandbox="allow-forms allow-popups allow-scripts allow-same-origin allow-modals" name="iframe" frameborder="0">
+        </iframe>
+    </div>
+</div>
+
+<script>
+var _ = {};
+_.JSONEncode = (function() {
+    return function(mixed_val) {
+        var value = mixed_val;
+        var quote = function(string) {
+            var escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g; // eslint-disable-line no-control-regex
+            var meta = { // table of character substitutions
+                '\b': '\\b',
+                '\t': '\\t',
+                '\n': '\\n',
+                '\f': '\\f',
+                '\r': '\\r',
+                '"': '\\"',
+                '\\': '\\\\'
+            };
+
+            escapable.lastIndex = 0;
+            return escapable.test(string) ?
+                '"' + string.replace(escapable, function(a) {
+                    var c = meta[a];
+                    return typeof c === 'string' ? c :
+                        '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+                }) + '"' :
+                '"' + string + '"';
+        };
+
+        var str = function(key, holder) {
+            var gap = '';
+            var indent = '    ';
+            var i = 0; // The loop counter.
+            var k = ''; // The member key.
+            var v = ''; // The member value.
+            var length = 0;
+            var mind = gap;
+            var partial = [];
+            var value = holder[key];
+
+            // If the value has a toJSON method, call it to obtain a replacement value.
+            if (value && typeof value === 'object' &&
+                typeof value.toJSON === 'function') {
+                value = value.toJSON(key);
+            }
+
+            // What happens next depends on the value's type.
+            switch (typeof value) {
+                case 'string':
+                    return quote(value);
+
+                case 'number':
+                    // JSON numbers must be finite. Encode non-finite numbers as null.
+                    return isFinite(value) ? String(value) : 'null';
+
+                case 'boolean':
+                case 'null':
+                    // If the value is a boolean or null, convert it to a string. Note:
+                    // typeof null does not produce 'null'. The case is included here in
+                    // the remote chance that this gets fixed someday.
+
+                    return String(value);
+
+                case 'object':
+                    // If the type is 'object', we might be dealing with an object or an array or
+                    // null.
+                    // Due to a specification blunder in ECMAScript, typeof null is 'object',
+                    // so watch out for that case.
+                    if (!value) {
+                        return 'null';
+                    }
+
+                    // Make an array to hold the partial results of stringifying this object value.
+                    gap += indent;
+                    partial = [];
+
+                    // Is the value an array?
+                    if (toString.apply(value) === '[object Array]') {
+                        // The value is an array. Stringify every element. Use null as a placeholder
+                        // for non-JSON values.
+
+                        length = value.length;
+                        for (i = 0; i < length; i += 1) {
+                            partial[i] = str(i, value) || 'null';
+                        }
+
+                        // Join all of the elements together, separated with commas, and wrap them in
+                        // brackets.
+                        v = partial.length === 0 ? '[]' :
+                            gap ? '[\n' + gap +
+                            partial.join(',\n' + gap) + '\n' +
+                            mind + ']' :
+                            '[' + partial.join(',') + ']';
+                        gap = mind;
+                        return v;
+                    }
+
+                    // Iterate through all of the keys in the object.
+                    for (k in value) {
+                        if (hasOwnProperty.call(value, k)) {
+                            v = str(k, value);
+                            if (v) {
+                                partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                            }
+                        }
+                    }
+
+                    // Join all of the member texts together, separated with commas,
+                    // and wrap them in braces.
+                    v = partial.length === 0 ? '{}' :
+                        gap ? '{' + partial.join(',') + '' +
+                        mind + '}' : '{' + partial.join(',') + '}';
+                    gap = mind;
+                    return v;
+            }
+        };
+
+        // Make a fake root object containing our value under the key of ''.
+        // Return the result of stringifying the value.
+        return str('', {
+            '': value
+        });
+    };
+})();
+
+_.JSONDecode = (function() { // https://github.com/douglascrockford/JSON-js/blob/master/json_parse.js
+    var at, // The index of the current character
+        ch, // The current character
+        escapee = {
+            '"': '"',
+            '\\': '\\',
+            '/': '/',
+            'b': '\b',
+            'f': '\f',
+            'n': '\n',
+            'r': '\r',
+            't': '\t'
+        },
+        text,
+        error = function(m) {
+            throw {
+                name: 'SyntaxError',
+                message: m,
+                at: at,
+                text: text
+            };
+        },
+        next = function(c) {
+            // If a c parameter is provided, verify that it matches the current character.
+            if (c && c !== ch) {
+                error('Expected \'' + c + '\' instead of \'' + ch + '\'');
+            }
+            // Get the next character. When there are no more characters,
+            // return the empty string.
+            ch = text.charAt(at);
+            at += 1;
+            return ch;
+        },
+        number = function() {
+            // Parse a number value.
+            var number,
+                string = '';
+
+            if (ch === '-') {
+                string = '-';
+                next('-');
+            }
+            while (ch >= '0' && ch <= '9') {
+                string += ch;
+                next();
+            }
+            if (ch === '.') {
+                string += '.';
+                while (next() && ch >= '0' && ch <= '9') {
+                    string += ch;
+                }
+            }
+            if (ch === 'e' || ch === 'E') {
+                string += ch;
+                next();
+                if (ch === '-' || ch === '+') {
+                    string += ch;
+                    next();
+                }
+                while (ch >= '0' && ch <= '9') {
+                    string += ch;
+                    next();
+                }
+            }
+            number = +string;
+            if (!isFinite(number)) {
+                error('Bad number');
+            } else {
+                return number;
+            }
+        },
+
+        string = function() {
+            // Parse a string value.
+            var hex,
+                i,
+                string = '',
+                uffff;
+            // When parsing for string values, we must look for " and \ characters.
+            if (ch === '"') {
+                while (next()) {
+                    if (ch === '"') {
+                        next();
+                        return string;
+                    }
+                    if (ch === '\\') {
+                        next();
+                        if (ch === 'u') {
+                            uffff = 0;
+                            for (i = 0; i < 4; i += 1) {
+                                hex = parseInt(next(), 16);
+                                if (!isFinite(hex)) {
+                                    break;
+                                }
+                                uffff = uffff * 16 + hex;
+                            }
+                            string += String.fromCharCode(uffff);
+                        } else if (typeof escapee[ch] === 'string') {
+                            string += escapee[ch];
+                        } else {
+                            break;
+                        }
+                    } else {
+                        string += ch;
+                    }
+                }
+            }
+            error('Bad string');
+        },
+        white = function() {
+            // Skip whitespace.
+            while (ch && ch <= ' ') {
+                next();
+            }
+        },
+        word = function() {
+            // true, false, or null.
+            switch (ch) {
+                case 't':
+                    next('t');
+                    next('r');
+                    next('u');
+                    next('e');
+                    return true;
+                case 'f':
+                    next('f');
+                    next('a');
+                    next('l');
+                    next('s');
+                    next('e');
+                    return false;
+                case 'n':
+                    next('n');
+                    next('u');
+                    next('l');
+                    next('l');
+                    return null;
+            }
+            error('Unexpected "' + ch + '"');
+        },
+        value, // Placeholder for the value function.
+        array = function() {
+            // Parse an array value.
+            var array = [];
+
+            if (ch === '[') {
+                next('[');
+                white();
+                if (ch === ']') {
+                    next(']');
+                    return array; // empty array
+                }
+                while (ch) {
+                    array.push(value());
+                    white();
+                    if (ch === ']') {
+                        next(']');
+                        return array;
+                    }
+                    next(',');
+                    white();
+                }
+            }
+            error('Bad array');
+        },
+        object = function() {
+            // Parse an object value.
+            var key,
+                object = {};
+
+            if (ch === '{') {
+                next('{');
+                white();
+                if (ch === '}') {
+                    next('}');
+                    return object; // empty object
+                }
+                while (ch) {
+                    key = string();
+                    white();
+                    next(':');
+                    if (Object.hasOwnProperty.call(object, key)) {
+                        error('Duplicate key "' + key + '"');
+                    }
+                    object[key] = value();
+                    white();
+                    if (ch === '}') {
+                        next('}');
+                        return object;
+                    }
+                    next(',');
+                    white();
+                }
+            }
+            error('Bad object');
+        };
+
+    value = function() {
+        // Parse a JSON value. It could be an object, an array, a string,
+        // a number, or a word.
+        white();
+        switch (ch) {
+            case '{':
+                return object();
+            case '[':
+                return array();
+            case '"':
+                return string();
+            case '-':
+                return number();
+            default:
+                return ch >= '0' && ch <= '9' ? number() : word();
+        }
+    };
+
+    // Return the json_parse function. It will have access to all of the
+    // above functions and variables.
+    return function(source) {
+        var result;
+
+        text = source;
+        at = 0;
+        ch = ' ';
+        result = value();
+        white();
+        if (ch) {
+            error('Syntax error');
+        }
+
+        return result;
+    };
+})();
+
+
+
+function Base64() {
+    
+       // private property
+       _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    
+       // public method for encoding
+       this.encode = function (input) {
+           var output = "";
+           var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+           var i = 0;
+           input = _utf8_encode(input);
+           while (i < input.length) {
+               chr1 = input.charCodeAt(i++);
+               chr2 = input.charCodeAt(i++);
+               chr3 = input.charCodeAt(i++);
+               enc1 = chr1 >> 2;
+               enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+               enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+               enc4 = chr3 & 63;
+               if (isNaN(chr2)) {
+                   enc3 = enc4 = 64;
+               } else if (isNaN(chr3)) {
+                   enc4 = 64;
+               }
+               output = output +
+               _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
+               _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+           }
+           return output;
+       }
+    
+       // public method for decoding
+       this.decode = function (input) {
+           var output = "";
+           var chr1, chr2, chr3;
+           var enc1, enc2, enc3, enc4;
+           var i = 0;
+           input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+           while (i < input.length) {
+               enc1 = _keyStr.indexOf(input.charAt(i++));
+               enc2 = _keyStr.indexOf(input.charAt(i++));
+               enc3 = _keyStr.indexOf(input.charAt(i++));
+               enc4 = _keyStr.indexOf(input.charAt(i++));
+               chr1 = (enc1 << 2) | (enc2 >> 4);
+               chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+               chr3 = ((enc3 & 3) << 6) | enc4;
+               output = output + String.fromCharCode(chr1);
+               if (enc3 != 64) {
+                   output = output + String.fromCharCode(chr2);
+               }
+               if (enc4 != 64) {
+                   output = output + String.fromCharCode(chr3);
+               }
+           }
+           output = _utf8_decode(output);
+           return output;
+       }
+    
+       // private method for UTF-8 encoding
+       _utf8_encode = function (string) {
+           string = string.replace(/\r\n/g,"\n");
+           var utftext = "";
+           for (var n = 0; n < string.length; n++) {
+               var c = string.charCodeAt(n);
+               if (c < 128) {
+                   utftext += String.fromCharCode(c);
+               } else if((c > 127) && (c < 2048)) {
+                   utftext += String.fromCharCode((c >> 6) | 192);
+                   utftext += String.fromCharCode((c & 63) | 128);
+               } else {
+                   utftext += String.fromCharCode((c >> 12) | 224);
+                   utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                   utftext += String.fromCharCode((c & 63) | 128);
+               }
+    
+           }
+           return utftext;
+       }
+    
+       // private method for UTF-8 decoding
+       _utf8_decode = function (utftext) {
+           var string = "";
+           var i = 0;
+           var c = c1 = c2 = 0;
+           while ( i < utftext.length ) {
+               c = utftext.charCodeAt(i);
+               if (c < 128) {
+                   string += String.fromCharCode(c);
+                   i++;
+               } else if((c > 191) && (c < 224)) {
+                   c2 = utftext.charCodeAt(i+1);
+                   string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                   i += 2;
+               } else {
+                   c2 = utftext.charCodeAt(i+1);
+                   c3 = utftext.charCodeAt(i+2);
+                   string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                   i += 3;
+               }
+           }
+           return string;
+       }
+   }
+</script>
+
+<script>
+    window.frames['iframe']._ = _;
+    window.frames['iframe'].Base64 = Base64;
+</script>
+
+<script src="http://cdn.bootcss.com/ace/1.2.3/ace.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="./Tiny-editor.js"></script>
+<script>
+    var Tiny = new TinyEditor('Tiny-container',{
+        index : 2
+    })
+</script>
+</body>
+</html>

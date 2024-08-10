@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+  * {margin: 0px; padding: 0px;}
+  </style>
+
+  <script>
+  (function(document,datracker,root){function loadJsSDK(){var script,first_script;script=document.createElement("script");script.type="text/javascript";script.async=true;script.src="../../build/test-1.7.2/DATracker.globals.js";first_script=document.getElementsByTagName("script")[0];first_script.parentNode.insertBefore(script,first_script)}if(!datracker["__SV"]){var win=window;var gen_fn,functions,i,lib_name="DATracker";window[lib_name]=datracker;datracker["_i"]=[];datracker["init"]=function(token,config,name){var target=datracker;if(typeof(name)!=="undefined"){target=datracker[name]=[]}else{name=lib_name}target["people"]=target["people"]||[];target["abtest"]=target["abtest"]||[];target["toString"]=function(no_stub){var str=lib_name;if(name!==lib_name){str+="."+name}if(!no_stub){str+=" (stub)"}return str};target["people"]["toString"]=function(){return target.toString(1)+".people (stub)"};function _set_and_defer(target,fn){var split=fn.split(".");if(split.length==2){target=target[split[0]];fn=split[1]}target[fn]=function(){target.push([fn].concat(Array.prototype.slice.call(arguments,0)))}}functions="track_heatmap register_attributes register_attributes_once clear_attributes unregister_attributes current_attributes single_pageview disable time_event get_appStatus track set_userId track_pageview track_links track_forms register register_once alias unregister identify login logout signup name_tag set_config reset people.set people.set_once people.set_realname people.set_country people.set_province people.set_city people.set_age people.set_gender people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.set_populationWithAccount  people.set_location people.set_birthday people.set_region people.set_account abtest.get_variation abtest.async_get_variable".split(" ");for(i=0;i<functions.length;i++){_set_and_defer(target,functions[i])}datracker["_i"].push([token,config,name])};datracker["__SV"]=1.6;loadJsSDK()}})(document,window["DATracker"]||[],window);
+  
+      window._pt_lt = new Date().getTime();
+      window._pt_sp_2 = [];
+      _pt_sp_2.push('setAccount,50a6ef75');
+      var _protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      (function() {
+      var atag = document.createElement('script'); atag.type = 'text/javascript'; atag.async = true;
+      atag.src = _protocol + 'js.ptengine.cn/50a6ef75.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(atag, s);
+      })();
+      DATracker.init('MA-9BC8-A684A873CD8F', {
+        abtest: {
+            enable_abtest: true,
+            //url: 'http://qa.hubble.netease.com/cc/a_exp',
+            //url: 'http://10.172.136.252:8086/cc/a_exp',
+            //url: 'http://10.240.192.60:3100/cc/a_exp',
+            //url: 'http://dev.hubble.netease.com/cc/a_exp',
+            interval_mins_abtest: 0,
+            default_variables: {
+                  rr: '22ss',
+                  ff: '34343'
+            },
+            multilinkTimeOutMs: 100
+        }
+      });
+  </script>
+</head>
+<body>
+  <h1>可视化实验编辑</h1>
+  <br />
+  <p>之前在聊天群里看到有人说面试的时候被问到了怎样实现一个拖拽效果，当时看到后在心里默默思考了下，结果发现好像我也写不出来啊。本着遇到一个解决一个的思想，就亲自敲了一个，看到张鑫旭大神写的代码，真的很厉害，多多学习了，（感觉随便搜一个关于前端方面的问题都能看到他的网站，真是太佩服了，写了那么多文章，十分感谢。）</p>
+  <br />
+  <button>确定</button><button>确定</button><button>确定</button><button>确定</button>
+  <a href='javascript:;'>超链接</a>
+  <textarea>玉玉</textarea>
+  <br /><br />
+  <input placeholder="提示信息"/>
+  <video>
+    <source src="movie.mp4" type="video/mp4">
+    <source src="movie.ogg" type="video/ogg">
+    您的浏览器不支持Video标签。
+  </video>
+  <img src="http://img.zcool.cn/community/0117e2571b8b246ac72538120dd8a4.jpg@1280w_1l_2o_100sh.jpg" />
+  <script src="../../build/visualization/visualization.js"></script>
+</body>
+</html>

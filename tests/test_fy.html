@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <meta charset="utf-8">
+        <title>测试-native和h5打通</title>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- //https://hubble-js-bucket.nosdn.127.net/DATracker.globals.test-1.3.3.js
+        //http://10.240.192.60:3100/build/1.3/DATracker.globals.js
+        //https://hubble.netease.com/track/w/1.3.1/DATracker.globals.js
+        //https://hubble-js-bucket.nosdn.127.net/DATracker.globals.1.3.1.js -->
+
+        <!-- <script src="https://cdn.optimizely.com/js/10491243288.js"></script> -->
+       
+    <script>
+        (function(document, datracker, root){  
+
+        function loadJsSDK() {
+            var script, first_script;
+            script = document.createElement("script");
+            script.type = "text/javascript";
+            script.async = true;
+            script.src = 'http://localhost:3100/build/1.6.10/DATracker.globals.js';
+            first_script = document.getElementsByTagName("script")[0];
+            first_script.parentNode.insertBefore(script, first_script);
+        };
+
+
+        if (!datracker['__SV']) {
+            var win = window;
+
+            var gen_fn, functions, i, lib_name = "DATracker";
+            window[lib_name] = datracker;
+
+            datracker['_i'] = [];
+
+            datracker['init'] = function (token, config, name) {
+                var target = datracker;
+                if (typeof(name) !== 'undefined') {
+                    target = datracker[name] = [];
+                } else {
+                    name = lib_name;
+                }
+
+                target['people'] = target['people'] || [];
+                target['abtest'] = target['abtest'] || [];
+                target['toString'] = function(no_stub) {
+                    var str = lib_name;
+                    if (name !== lib_name) {
+                        str += "." + name;
+                    }
+                    if (!no_stub) {
+                        str += " (stub)";
+                    }
+                    return str;
+                };
+                target['people']['toString'] = function() {
+                    return target.toString(1) + ".people (stub)";
+                };
+
+                function _set_and_defer(target, fn) {
+                    var split = fn.split(".");
+                    if (split.length == 2) {
+                        target = target[split[0]];
+                        fn = split[1];
+                    }
+                    target[fn] = function(){
+                        target.push([fn].concat(Array.prototype.slice.call(arguments, 0)));
+                    };
+                }
+                //每次新增对外API，在这边添加下
+                functions = "track_heatmap register_attributes register_attributes_once clear_attributes unregister_attributes current_attributes single_pageview disable time_event get_appStatus track set_userId track_pageview track_links track_forms register register_once alias unregister identify login logout signup name_tag set_config reset people.set people.set_once people.set_realname people.set_country people.set_province people.set_city people.set_age people.set_gender people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.set_populationWithAccount  people.set_location people.set_birthday people.set_region people.set_account abtest.get_variation abtest.async_get_variable".split(' ');
+                for (i = 0; i < functions.length; i++) {
+                    _set_and_defer(target, functions[i]);
+                }
+
+                datracker['_i'].push([token, config, name]);
+            };
+
+            datracker['__SV'] = 1.6;
+            loadJsSDK();
+        }
+
+        })(document, window['DATracker'] || [], window);
+    </script> 
+     
+     <!-- <script type="text/javascript" src="https://hubble-js-bucket.nosdn.127.net/DATracker.sync.1.6.2.js"></script> -->
+     <!-- <script type="text/javascript" src="http://10.240.192.60:3100/build/1.6.2/DATracker.sync.js"></script> -->
+
+     <!-- <script type="text/javascript">
+        (function(document,datracker,root){var help={};help.cookie={get:function(name){var nameEQ=name+"=";var ca=document.cookie.split(";");for(var i=0;i<ca.length;i++){var c=ca[i];while(c.charAt(0)==" "){c=c.substring(1,c.length)}if(c.indexOf(nameEQ)===0){return decodeURIComponent(c.substring(nameEQ.length,c.length))}}return null},parse:function(name){var cookie;try{cookie=_.JSONDecode(_.cookie.get(name))||{}}catch(err){}return cookie},set:function(name,value,days,cross_subdomain,is_secure){var cdomain="",expires="",secure="";if(cross_subdomain){var matches=document.location.hostname.match(/[a-z0-9][a-z0-9\-]+\.[a-z\.]{2,6}$/i),domain=matches?matches[0]:"";cdomain=((domain)?"; domain=."+domain:"")}if(days){var date=new Date();date.setTime(date.getTime()+(days*24*60*60*1000));expires="; expires="+date.toGMTString()}if(is_secure){secure="; secure"}var new_cookie_val=name+"="+encodeURIComponent(value)+expires+"; path=/"+cdomain+secure;document.cookie=new_cookie_val;return new_cookie_val},remove:function(name,cross_subdomain){_.cookie.set(name,"",-1,cross_subdomain)}};root.getHubbleJSSDKVersions=function(version){help.cookie.set("mp_versions_hubble_jsSDK",version,false,true);loadJsSDK()};function removeElement(_element){var _parentElement=_element.parentNode;if(_parentElement){_parentElement.removeChild(_element)}}function addScriptTag(src){var loaded;var head=document.getElementsByTagName("head")[0];var script=document.createElement("script");var localVersion=help.cookie.get("mp_versions_hubble_jsSDK");script.setAttribute("type","text/javascript");script.src=src;script.onload=script.onreadystatechange=function(){if(!loaded&&(!script.readyState||/loaded|complete/.test(script.readyState))){script.onload=script.onreadystatechange=null;loaded=true;removeElement(script)}};head.appendChild(script)}function addScriptTagTwo(url,fn){var isFirst=true;var iframe;try{iframe=document.createElement("iframe");iframe.style.display="none"}catch(e){iframe=document.createElement("iframe");iframe.setAttribute("src",url)}var loadfn=function(){if(isFirst){iframe.contentWindow.location="about:blank";isFirst=false}else{fn(iframe.contentWindow.name);iframe.contentWindow.document.write("");iframe.contentWindow.close();document.body.removeChild(iframe);iframe.src="";iframe=null}};iframe.src=url;if(iframe.attachEvent){iframe.attachEvent("onload",loadfn)}else{iframe.onload=loadfn}if(iframe){document.body.appendChild(iframe)}}function loadJsSDK(){var localVersion=help.cookie.get("mp_versions_hubble_jsSDK");var HUBBLE_LIB_URL="https://hubble.netease.com/track/w/DATracker.globals.js";var script,first_script;script=document.createElement("script");script.type="text/javascript";script.async=true;if(localVersion){HUBBLE_LIB_URL="https://hubble-js-bucket.nosdn.127.net/"+localVersion+".js"}script.src=HUBBLE_LIB_URL;first_script=document.getElementsByTagName("script")[0];first_script.parentNode.insertBefore(script,first_script)}if(!datracker["__SV"]){var win=window;try{var getHashParam,matches,state,loc=win.location,hash=loc.hash;getHashParam=function(hash,param){matches=hash.match(new RegExp(param+"=([^&]*)"));return matches?matches[1]:null};if(hash&&getHashParam(hash,"state")){state=JSON.parse(decodeURIComponent(getHashParam(hash,"state")));if(state["action"]==="mpeditor"){win.sessionStorage.setItem("_mpcehash",hash);history.replaceState(state["desiredHash"]||"",document.title,loc.pathname+loc.search)}}}catch(e){}var gen_fn,functions,i,lib_name="DATracker";window[lib_name]=datracker;datracker["_i"]=[];datracker["init"]=function(token,config,name){var target=datracker;if(typeof(name)!=="undefined"){target=datracker[name]=[]}else{name=lib_name}target["people"]=target["people"]||[];target["toString"]=function(no_stub){var str=lib_name;if(name!==lib_name){str+="."+name}if(!no_stub){str+=" (stub)"}return str};target["people"]["toString"]=function(){return target.toString(1)+".people (stub)"};function _set_and_defer(target,fn){var split=fn.split(".");if(split.length==2){target=target[split[0]];fn=split[1]}target[fn]=function(){target.push([fn].concat(Array.prototype.slice.call(arguments,0)))}}functions="register_attributes register_attributes_once clear_attributes unregister_attributes current_attributes single_pageview disable time_event get_appStatus track set_userId track_pageview track_links track_forms register register_once alias unregister identify login logout signup name_tag set_config reset people.set people.set_once people.set_realname people.set_country people.set_province people.set_city people.set_age people.set_gender people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.set_populationWithAccount  people.set_location people.set_birthday people.set_region people.set_account".split(" ");for(i=0;i<functions.length;i++){_set_and_defer(target,functions[i])}datracker["_i"].push([token,config,name])};datracker["__SV"]=1.2}if(!help.cookie.get("mp_versions_hubble_jsSDK")){addScriptTag("https://hubble.netease.com/track/w/version.js?random"+Math.random())
+        }else{loadJsSDK()}})(document,window["DATracker"]||[],window);
+        
+        </script> -->
+
+
+     <style type="text/css">
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+        /*滚动条*/
+        ::-webkit-scrollbar {width: 6px;height:6px;}
+        ::-webkit-scrollbar-track-piece{background-color: #eee;margin: -2px;}
+        ::-webkit-scrollbar-thumb{background: rgb(202, 9, 9);box-shadow: 0 1px 3px 0 rgba(0,0,0,0.15);border-radius: 8px;}
+        ::-webkit-scrollbar-thumb:vertical:hover{background: #bbb}
+        ::-webkit-scrollbar-thumb:horizontal:hover{background: #bbb}
+        p,h1,h2,a {
+            cursor: pointer;
+        }
+        #prebox {
+            width: 500px;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 999;
+            padding: 10px;
+            background: #1E211F;
+            color: #fff;
+            border-radius: 6px;
+            pointer-events: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        #pre {
+            height: 800px;
+            overflow: auto;
+            font-size: 14px;
+        }
+    </style>
+    </header>
+    <body>
+        <div style="clear:both;">
+            <div style="float: left; width: 400px;">
+                <input type="text" name="adUrl" id="adUrl" placeholder="请在这修改广告跳转地址" style="width: 80%;">
+                <br>
+                <br>
+                <input type="text" name="userId" id="userId" placeholder="请在这修改userId" value="hzwangyang1">
+                <br>
+                <br>
+                <a href="http://10.240.192.60:3100/tests/test_wy.html?utm_source=测试2&utm_medium=测试2&utm_campaign=测试&utm_content=&utm_term=&product_id=1000&promotional_id=91" class="three" id="turn">广告</a>
+                <br><br><br><br>
+                <!--<img src="http://img.zcool.cn/community/0117e2571b8b246ac72538120dd8a4.jpg@1280w_1l_2o_100sh.jpg" />-->
+                <a href="#dd=2" id="one">单页面1</a>
+                <a href="#dd=33" class="two">单页面2</a>
+
+                <button id="start">循环发送数据</button>
+                <button id="stop">停止循环发送数据</button>
+                <div style="width:150px;height:100px;border:1px solid #ccc;">
+                    <button id="ff">ab测试构造数据ff</button>
+                </div>
+                
+                
+                <h1>测试登录</h1>
+                <h1>测试退出</h1>
+                <h2>测试自定义事件</h2>
+                <p>设置用户自定义属性</p>
+                <p>设置realname</p>
+                <p>设置country</p>
+                <p>设置region</p>
+                <p>设置city</p>
+                <p>设置birthday</p>
+                <p>设置gender</p>
+                <p>调用set_userId方法，设置用户useId</p>
+                <p>设置account，用户账户</p>
+                <p id="register_attributes">执行事件的通用属性 DATracker.register_attributes方法 (设置属性 bbb)</p>
+                <p id="unregister_attributes">清除之前设置的某个通用属性"bbb" DATracker.unregister_attributes方法 (设置属性 bbb)</p>
+                <p id="clear_attributes">清除事件的通用属性 DATracker.clear_attributes方法</p>
+                <p id="register_attributes_once">不覆盖之前已经设定的通用属性，调用 DATracker.register_attributes_once方法 (设置属性 bbb)</p>
+            </div>
+            <div id="prebox">
+                 <div id="pre">
+                     <br>
+                 </div>
+            </div>
+        </div>
+<a href="http://m.kaola.com/activity/h5/40373.shtml?kpm=MTAwMg%3D%3D.MTA5Nw%3D%3D.MTQ4NDA%3D.3&scm=3e9.42b65.4.2393ce-239b25-54ec5&p_kpm=MjAxOA%3D%3D.MQ%3D%3D.5a625bGF55Sf5rS7" >的点点滴滴</a>
+        <script>
+            document.getElementById('adUrl').onblur  = function() {
+                var aUrl = document.getElementById('turn');
+                aUrl.setAttribute('href', this.value)
+            };
+
+            document.getElementsByTagName('h1')[0].onclick = function(e) {
+                //DATracker.track("eventH1",{"e":222});
+                DATracker.login(document.getElementById('userId').value);
+               //mixpanel.people.set({ "Plan": "Premium22" });
+            }
+            document.getElementsByTagName('h1')[1].onclick = function(e) {
+                //DATracker.track("eventH1",{"e":222});
+                DATracker.logout();
+               //mixpanel.people.set({ "Plan": "Premium22" });
+            }
+            // document.getElementsByTagName('a')[1].onclick = function(e) {
+            //     e.preventDefault();
+            //     DATracker.track('a_click', {}, track_a_click);            
+            // }
+            document.getElementsByTagName('h2')[0].onclick = function(e) {
+                DATracker.track("TEST-jsSDK-10092",{"nnan":"aa", deviceOs: 'www', province: '山东', devicePlatform: 'pc', $age: 15, $browser: '360'}, function(e) {
+                    
+                });
+            }
+            document.getElementsByTagName('p')[0].onclick = function(e) {
+                DATracker.people.set({ "name": "汪洋","country":"中国","province":"浙江省","city":"杭州市","age":"100","gender":"男", "niu":"自定义用户属性" });
+            }
+            document.getElementsByTagName('p')[1].onclick = function(e) {
+                DATracker.people.set_realname('汪洋');
+            }
+            document.getElementsByTagName('p')[2].onclick = function(e) {
+                DATracker.people.set_country('中国');
+            }
+            document.getElementsByTagName('p')[3].onclick = function(e) {
+                DATracker.people.set_region('浙江');
+            }
+            document.getElementsByTagName('p')[4].onclick = function(e) {
+                DATracker.people.set_city('杭州');
+            }
+            document.getElementsByTagName('p')[5].onclick = function(e) {
+                DATracker.people.set_birthday('2011-01-10');
+            }
+            document.getElementsByTagName('p')[6].onclick = function(e) {
+                DATracker.people.set_gender('男');
+            }
+            document.getElementsByTagName('p')[7].onclick = function(e) {
+                DATracker.set_userId(document.getElementById('userId').value);
+            }
+            document.getElementsByTagName('p')[8].onclick = function(e) {
+                DATracker.people.set_account(document.getElementById('userId').value);
+            }
+            //DATracker.track('a_click', {}, track_a_click);
+            document.getElementById('register_attributes').onclick = function() {
+                DATracker.register_attributes({bbb: 'sssss333'});
+            };
+            document.getElementById('clear_attributes').onclick = function() {
+                DATracker.clear_attributes();
+            };
+            document.getElementById('unregister_attributes').onclick = function() {
+                DATracker.unregister_attributes('bbb');
+            };
+            document.getElementById('register_attributes_once').onclick = function() {
+                DATracker.register_attributes_once({bbb: '3333'});
+            };
+
+            document.getElementById('one').onclick = function() {
+                 var dd = [true, false, true, false, true, true, false, false, true];
+                 var num = Math.floor(Math.random() * dd.length);
+                // if(dd[num]) {
+                //     DATracker.track("Apptab", {
+                //         text: document.getElementById('one').innerText
+                //     });
+                // }
+                document.getElementById('one').setAttribute('id', num +'xxx');
+            };
+
+            document.getElementById('ff').onclick = function() {
+                // var dd = [true, false];
+                // var num = Math.floor(Math.random() * dd.length);
+                // if(dd[num]) {
+                //     DATracker.track("Apptab", {
+                //         text: document.getElementById('ff').innerText
+                //     });
+                // }
+                DATracker.track_heatmap(this);
+            };
+
+            var timer;
+
+            document.getElementById('start').onclick = function() {
+                timer = setInterval(function() {
+                    DATracker.track("eventH2-"+ Math.floor(Math.random() * 1000),{"nnan":"aa", deviceOs: 'www', province: '山东', devicePlatform: 'pc', $age: 15, $browser: '360'});
+                }, 1000);
+            };
+            document.getElementById('stop').onclick = function() {
+                clearInterval(timer);
+            };
+
+            try{
+                var sr = new webkitSpeechRecognition();
+                sr.onresult = function (evt) {
+                    console.log(evt.results[0][0].transcript);
+                }
+                sr.start();
+                var msg = new SpeechSynthesisUtterance('你会成功的！外面是不是下雨了，小风');
+                msg.lang = 'zh-CN';
+               // speechSynthesis.speak(msg);
+            }catch(e){}
+
+        </script>
+
+
+        <!-- <script type="text/javascript" src="https://hubble-js-bucket.nosdn.127.net/DATracker.sync.1.1.1.js"></script> -->
+
+<script language=JavaScript>
+
+// (function(h,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,e=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};e&&c(e,"state")&&(i=JSON.parse(decodeURIComponent(c(e,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",e),history.replaceState(i.desiredHash||"",h.title,j.pathname+j.search)))}catch(m){}var k,g;window.DATracker=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+// 0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="DATracker";d.people=d.people||[];d.toString=function(b){var a="DATracker";"DATracker"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="register_attributes register_attributes_once clear_attributes unregister_attributes current_attributes single_pageview disable time_event get_appStatus track set_userId track_pageview track_links track_forms register register_once alias unregister identify login logout signup name_tag set_config reset people.set people.set_once people.set_realname people.set_country people.set_province people.set_city people.set_age people.set_gender people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.set_populationWithAccount  people.set_location people.set_birthday people.set_region people.set_account".split(" ");
+// for(g=0;g<k.length;g++)e(d,k[g]);a._i.push([b,c,f])};a.__SV=1.2;b=h.createElement("script");b.type="text/javascript";b.async=!0;b.src="https://hubble-js-bucket.nosdn.127.net/DATracker.globals.1.3.js";c=h.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.DATracker||[]);
+
+var _ = {};
+_.JSONEncode = (function() {
+    return function(mixed_val) {
+        var value = mixed_val;
+        var quote = function(string) {
+            var escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g; // eslint-disable-line no-control-regex
+            var meta = { // table of character substitutions
+                '\b': '\\b',
+                '\t': '\\t',
+                '\n': '\\n',
+                '\f': '\\f',
+                '\r': '\\r',
+                '"': '\\"',
+                '\\': '\\\\'
+            };
+
+            escapable.lastIndex = 0;
+            return escapable.test(string) ?
+                '"' + string.replace(escapable, function(a) {
+                    var c = meta[a];
+                    return typeof c === 'string' ? c :
+                        '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+                }) + '"' :
+                '"' + string + '"';
+        };
+
+        var str = function(key, holder) {
+            var gap = '';
+            var indent = '    ';
+            var i = 0; // The loop counter.
+            var k = ''; // The member key.
+            var v = ''; // The member value.
+            var length = 0;
+            var mind = gap;
+            var partial = [];
+            var value = holder[key];
+
+            // If the value has a toJSON method, call it to obtain a replacement value.
+            if (value && typeof value === 'object' &&
+                typeof value.toJSON === 'function') {
+                value = value.toJSON(key);
+            }
+
+            // What happens next depends on the value's type.
+            switch (typeof value) {
+                case 'string':
+                    return quote(value);
+
+                case 'number':
+                    // JSON numbers must be finite. Encode non-finite numbers as null.
+                    return isFinite(value) ? String(value) : 'null';
+
+                case 'boolean':
+                case 'null':
+                    // If the value is a boolean or null, convert it to a string. Note:
+                    // typeof null does not produce 'null'. The case is included here in
+                    // the remote chance that this gets fixed someday.
+
+                    return String(value);
+
+                case 'object':
+                    // If the type is 'object', we might be dealing with an object or an array or
+                    // null.
+                    // Due to a specification blunder in ECMAScript, typeof null is 'object',
+                    // so watch out for that case.
+                    if (!value) {
+                        return 'null';
+                    }
+
+                    // Make an array to hold the partial results of stringifying this object value.
+                    gap += indent;
+                    partial = [];
+
+                    // Is the value an array?
+                    if (toString.apply(value) === '[object Array]') {
+                        // The value is an array. Stringify every element. Use null as a placeholder
+                        // for non-JSON values.
+
+                        length = value.length;
+                        for (i = 0; i < length; i += 1) {
+                            partial[i] = str(i, value) || 'null';
+                        }
+
+                        // Join all of the elements together, separated with commas, and wrap them in
+                        // brackets.
+                        v = partial.length === 0 ? '[]' :
+                            gap ? '[\n' + gap +
+                            partial.join(',\n' + gap) + '\n' +
+                            mind + ']' :
+                            '[' + partial.join(',') + ']';
+                        gap = mind;
+                        return v;
+                    }
+
+                    // Iterate through all of the keys in the object.
+                    for (k in value) {
+                        if (hasOwnProperty.call(value, k)) {
+                            v = str(k, value);
+                            if (v) {
+                                partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                            }
+                        }
+                    }
+
+                    // Join all of the member texts together, separated with commas,
+                    // and wrap them in braces.
+                    v = partial.length === 0 ? '{}' :
+                        gap ? '{' + partial.join(',') + '' +
+                        mind + '}' : '{' + partial.join(',') + '}';
+                    gap = mind;
+                    return v;
+            }
+        };
+
+        // Make a fake root object containing our value under the key of ''.
+        // Return the result of stringifying the value.
+        return str('', {
+            '': value
+        });
+    };
+})();
+
+_.JSONDecode = (function() { // https://github.com/douglascrockford/JSON-js/blob/master/json_parse.js
+    var at, // The index of the current character
+        ch, // The current character
+        escapee = {
+            '"': '"',
+            '\\': '\\',
+            '/': '/',
+            'b': '\b',
+            'f': '\f',
+            'n': '\n',
+            'r': '\r',
+            't': '\t'
+        },
+        text,
+        error = function(m) {
+            throw {
+                name: 'SyntaxError',
+                message: m,
+                at: at,
+                text: text
+            };
+        },
+        next = function(c) {
+            // If a c parameter is provided, verify that it matches the current character.
+            if (c && c !== ch) {
+                error('Expected \'' + c + '\' instead of \'' + ch + '\'');
+            }
+            // Get the next character. When there are no more characters,
+            // return the empty string.
+            ch = text.charAt(at);
+            at += 1;
+            return ch;
+        },
+        number = function() {
+            // Parse a number value.
+            var number,
+                string = '';
+
+            if (ch === '-') {
+                string = '-';
+                next('-');
+            }
+            while (ch >= '0' && ch <= '9') {
+                string += ch;
+                next();
+            }
+            if (ch === '.') {
+                string += '.';
+                while (next() && ch >= '0' && ch <= '9') {
+                    string += ch;
+                }
+            }
+            if (ch === 'e' || ch === 'E') {
+                string += ch;
+                next();
+                if (ch === '-' || ch === '+') {
+                    string += ch;
+                    next();
+                }
+                while (ch >= '0' && ch <= '9') {
+                    string += ch;
+                    next();
+                }
+            }
+            number = +string;
+            if (!isFinite(number)) {
+                error('Bad number');
+            } else {
+                return number;
+            }
+        },
+
+        string = function() {
+            // Parse a string value.
+            var hex,
+                i,
+                string = '',
+                uffff;
+            // When parsing for string values, we must look for " and \ characters.
+            if (ch === '"') {
+                while (next()) {
+                    if (ch === '"') {
+                        next();
+                        return string;
+                    }
+                    if (ch === '\\') {
+                        next();
+                        if (ch === 'u') {
+                            uffff = 0;
+                            for (i = 0; i < 4; i += 1) {
+                                hex = parseInt(next(), 16);
+                                if (!isFinite(hex)) {
+                                    break;
+                                }
+                                uffff = uffff * 16 + hex;
+                            }
+                            string += String.fromCharCode(uffff);
+                        } else if (typeof escapee[ch] === 'string') {
+                            string += escapee[ch];
+                        } else {
+                            break;
+                        }
+                    } else {
+                        string += ch;
+                    }
+                }
+            }
+            error('Bad string');
+        },
+        white = function() {
+            // Skip whitespace.
+            while (ch && ch <= ' ') {
+                next();
+            }
+        },
+        word = function() {
+            // true, false, or null.
+            switch (ch) {
+                case 't':
+                    next('t');
+                    next('r');
+                    next('u');
+                    next('e');
+                    return true;
+                case 'f':
+                    next('f');
+                    next('a');
+                    next('l');
+                    next('s');
+                    next('e');
+                    return false;
+                case 'n':
+                    next('n');
+                    next('u');
+                    next('l');
+                    next('l');
+                    return null;
+            }
+            error('Unexpected "' + ch + '"');
+        },
+        value, // Placeholder for the value function.
+        array = function() {
+            // Parse an array value.
+            var array = [];
+
+            if (ch === '[') {
+                next('[');
+                white();
+                if (ch === ']') {
+                    next(']');
+                    return array; // empty array
+                }
+                while (ch) {
+                    array.push(value());
+                    white();
+                    if (ch === ']') {
+                        next(']');
+                        return array;
+                    }
+                    next(',');
+                    white();
+                }
+            }
+            error('Bad array');
+        },
+        object = function() {
+            // Parse an object value.
+            var key,
+                object = {};
+
+            if (ch === '{') {
+                next('{');
+                white();
+                if (ch === '}') {
+                    next('}');
+                    return object; // empty object
+                }
+                while (ch) {
+                    key = string();
+                    white();
+                    next(':');
+                    if (Object.hasOwnProperty.call(object, key)) {
+                        error('Duplicate key "' + key + '"');
+                    }
+                    object[key] = value();
+                    white();
+                    if (ch === '}') {
+                        next('}');
+                        return object;
+                    }
+                    next(',');
+                    white();
+                }
+            }
+            error('Bad object');
+        };
+
+    value = function() {
+        // Parse a JSON value. It could be an object, an array, a string,
+        // a number, or a word.
+        white();
+        switch (ch) {
+            case '{':
+                return object();
+            case '[':
+                return array();
+            case '"':
+                return string();
+            case '-':
+                return number();
+            default:
+                return ch >= '0' && ch <= '9' ? number() : word();
+        }
+    };
+
+    // Return the json_parse function. It will have access to all of the
+    // above functions and variables.
+    return function(source) {
+        var result;
+
+        text = source;
+        at = 0;
+        ch = ' ';
+        result = value();
+        white();
+        if (ch) {
+            error('Syntax error');
+        }
+
+        return result;
+    };
+})();
+
+
+
+function Base64() {
+    
+       // private property
+       _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    
+       // public method for encoding
+       this.encode = function (input) {
+           var output = "";
+           var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+           var i = 0;
+           input = _utf8_encode(input);
+           while (i < input.length) {
+               chr1 = input.charCodeAt(i++);
+               chr2 = input.charCodeAt(i++);
+               chr3 = input.charCodeAt(i++);
+               enc1 = chr1 >> 2;
+               enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+               enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+               enc4 = chr3 & 63;
+               if (isNaN(chr2)) {
+                   enc3 = enc4 = 64;
+               } else if (isNaN(chr3)) {
+                   enc4 = 64;
+               }
+               output = output +
+               _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
+               _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+           }
+           return output;
+       }
+    
+       // public method for decoding
+       this.decode = function (input) {
+           var output = "";
+           var chr1, chr2, chr3;
+           var enc1, enc2, enc3, enc4;
+           var i = 0;
+           input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+           while (i < input.length) {
+               enc1 = _keyStr.indexOf(input.charAt(i++));
+               enc2 = _keyStr.indexOf(input.charAt(i++));
+               enc3 = _keyStr.indexOf(input.charAt(i++));
+               enc4 = _keyStr.indexOf(input.charAt(i++));
+               chr1 = (enc1 << 2) | (enc2 >> 4);
+               chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+               chr3 = ((enc3 & 3) << 6) | enc4;
+               output = output + String.fromCharCode(chr1);
+               if (enc3 != 64) {
+                   output = output + String.fromCharCode(chr2);
+               }
+               if (enc4 != 64) {
+                   output = output + String.fromCharCode(chr3);
+               }
+           }
+           output = _utf8_decode(output);
+           return output;
+       }
+    
+       // private method for UTF-8 encoding
+       _utf8_encode = function (string) {
+           string = string.replace(/\r\n/g,"\n");
+           var utftext = "";
+           for (var n = 0; n < string.length; n++) {
+               var c = string.charCodeAt(n);
+               if (c < 128) {
+                   utftext += String.fromCharCode(c);
+               } else if((c > 127) && (c < 2048)) {
+                   utftext += String.fromCharCode((c >> 6) | 192);
+                   utftext += String.fromCharCode((c & 63) | 128);
+               } else {
+                   utftext += String.fromCharCode((c >> 12) | 224);
+                   utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                   utftext += String.fromCharCode((c & 63) | 128);
+               }
+    
+           }
+           return utftext;
+       }
+    
+       // private method for UTF-8 decoding
+       _utf8_decode = function (utftext) {
+           var string = "";
+           var i = 0;
+           var c = c1 = c2 = 0;
+           while ( i < utftext.length ) {
+               c = utftext.charCodeAt(i);
+               if (c < 128) {
+                   string += String.fromCharCode(c);
+                   i++;
+               } else if((c > 191) && (c < 224)) {
+                   c2 = utftext.charCodeAt(i+1);
+                   string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                   i += 2;
+               } else {
+                   c2 = utftext.charCodeAt(i+1);
+                   c3 = utftext.charCodeAt(i+2);
+                   string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                   i += 3;
+               }
+           }
+           return string;
+       }
+   }
+    </script>
+
+
+<script>
+    //da_activate
+        //, api_host: 'http://localhost:3100'
+        //,{is_single_page: true, single_page_config: { mode: 'history', track_replace_state: true }, session_interval_mins: 20, debug: true}
+        var $pre = document.getElementById('pre');
+        var isJSON = typeof window.JSON === 'object' ? true : false;
+
+        var before = function(datracker) {
+            datracker.current_attributes(function(properties) {
+                console.log(properties);
+                datracker.pageview_attributes =  properties;
+            });
+            datracker.debug = function(sendData) {
+                var b = new Base64();  
+                var node=document.createElement("pre");
+                if(isJSON) {
+                    node.innerHTML = JSON.stringify(JSON.parse(b.decode(sendData.data)), undefined, 2);
+                } else {
+                    node.innerHTML = _.JSONDecode(_.JSONEncode(b.decode(sendData.data)));
+                }
+                $pre.insertBefore(node, $pre.childNodes[0]);
+            };
+        };
+
+        //, api_host: 'http://10.240.192.60:3100'  MA-9FB3-2CE2D13413A3
+        DATracker.init('MA-9BC8-A684A873CD8F', {use_app_track: true, debug: true, loaded: before, 
+            persistence: "localStorage", is_single_page: true,
+            heatmap: {
+                //设置为true后，sdk自动给可以跳转的 a 标签绑定一个类似 DATracker.track_links() 的方法。
+                //默认值为false
+                collect_all: true,
+                isTrackLink: true,
+                // 自定义设置采集的元素的路径，需返回该元素的path，
+                // 该路径是热力图渲染时查找元素所需，请正确设置
+                set_collect_element_path: function(targetElement, heatmap) {
+                    var pathMap = {"a:nth-child":"ANC","aside:nth-child":"ASNC","article:nth-child":"ATNC","button:nth-child":"BNC","code:nth-child":"CDNC","canvas:nth-child":"CVNC","div:nth-child":"DVNC","footer:nth-child":"FTNC","form:nth-child":"FMNC","frame:nth-child":"FRNC","header:nth-child":"HDNC","iframe:nth-child":"IFNC","img:nth-child":"IGNC","input:nth-child":"IPNC","label:nth-child":"LBNC","li:nth-child":"LINC","p:nth-child":"PNC","section:nth-child":"SCNC","span:nth-child":"SPNC","table:nth-child":"TBNC","tbody:nth-child":"TYNC","td:nth-child":"TDNC","textarea:nth-child":"TANC","tfoot:nth-child":"TFNC","th:nth-child":"THNC","ul:nth-child":"ULNC"}
+
+                    var selector = function(targetElement) {
+                        var i = (targetElement.parentNode && 9 == targetElement.parentNode.nodeType) ? -1 : heatmap.getDomIndex(targetElement);
+                        var pathStr = targetElement.tagName.toLowerCase()
+                            + (~i ? ':nth-child(' + (i + 1) + ')' : '');
+                        for( let key in pathMap) {
+                            var re = new RegExp(key, 'g');
+                            pathStr = pathStr.replace(re, pathMap[key]);
+                        }
+                        return pathStr;
+                    };
+                    var getDomSelector = function(targetElement,arr) {
+                        if(!targetElement || !targetElement.parentNode || !targetElement.parentNode.children){
+                            return false;
+                        }
+                        arr = arr && arr.join ? arr : [];
+                        var name = targetElement.nodeName.toLowerCase();
+                        if (!targetElement || name === 'body' || 1 != targetElement.nodeType) {
+                            arr.unshift('body');
+                            return arr.join(' > ');
+                        }
+                        arr.unshift(selector(targetElement));
+                        return getDomSelector(targetElement.parentNode, arr);
+                    }
+                    return getDomSelector(targetElement);
+                },
+                //如果开启了全埋点，所有的点击事件都会收集
+                //collect_all: true,
+                //配置了这个函数后，默认不再采集热力图数据（指交互按钮 a，button，input 的数据）
+                //用户点击（a，button，input）这些元素时会触发这个函数，让你来判断是否要采集当前这个元素，
+                //当返回true的时候，热力图数据采集生效
+                collect_element: function(targetElement) {
+                    //示例
+                    //点击的元素属性 hubble-disable 为true时，不采集这个元素的热力图数据
+                    if(targetElement.getAttribute('hubble-disable') === 'true'){
+                        return false;
+                    }else{
+                        return true;
+                    }
+                },
+                //设置input里的内容是否采集，sdk默认是不采集的（基于安全隐私考虑，比如password等就不好采集）
+                //如果要采集，请返回true
+                collect_input: function(targetElement) {
+                    //例如如果元素的id是userId，就采集这个元素里的内容
+                    
+                }
+            },
+            //api_host: 'http://qa.hubble.netease.com',
+            abtest: {
+                enable_abtest: true,
+                //url: 'http://qa.hubble.netease.com/cc/a_exp',
+                //url: 'http://10.172.136.252:8086/cc/a_exp',
+                //url: 'http://10.240.192.60:3100/cc/a_exp',
+                url: 'http://qa.hubble.netease.com/cc/a_exp',
+                //interval_mins_abtest: 0,
+                default_variables: {
+                     rr: '22ss',
+                     ff: '34343'
+                },
+                multilinkTimeOutMs: 100
+            },
+            visualization_editor_js_url: '/build/visualization/visualization.js',
+            control_js_url: 'http://dev.hubble.netease.com/track/w/control/control.js',
+           // control_js_url: '/build/control/control.js',
+            //send_error: true,
+            api_host: 'http://dev.hubble.netease.com',
+            session_interval_mins: 30,
+            img: true
+            //truncateLength: 25
+        });
+
+        // setTimeout(() => {
+        //     //DATracker.abtest.async_get_variable();
+        // }, 0);
+        //DATracker.register_attributes({test: '测试设置属性'});
+        DATracker.get_appStatus(function(app_info){
+            var node=document.createElement("pre");
+            node.innerHTML = JSON.stringify(app_info, undefined, 2);
+            $pre.insertBefore(node, $pre.childNodes[0]);
+        });
+
+        DATracker.abtest.get_variation(function(flgs) {
+            // if(flgs.get('tabText') === '111') {
+            //     document.getElementById('one').innerText = '这个用户参与AB测试了';
+            // }
+            //document.getElementById('one').innerText = flgs.get('color', '单页面a');
+            
+            //flgs.get('textFont');
+            document.getElementById('ff').innerText = flgs.get('var1_111','sdsd');
+            //document.getElementById('ff').style.fontSize = flgs.get('textFont', '10px');
+            //flgs.get('rr')
+        });
+
+        //DATracker.register_pageview
+        //DATracker.track_pageview({aaa: 'sds'});
+        //DATracker.register_attributes_once({aaa: 'sdeed'});
+        //DATracker.clear_attributes();
+        //DATracker.unregister_attributes('');
+        
+        // DATracker.current_attributes(function(dd) {
+        //    // console.log(dd);
+        // });
+
+        //DATracker.dddd();
+        
+        //mixpanel.track("eventA",{"clicktimes":2});
+        //DATracker.people.set_once({ "$name": "汪洋","$country":"中国","$province":"浙江省","$city":"杭州市","$age":"100","$gender":"男", "niu":"自定义用户属性" });
+        //DATracker.people.set({ "$name": "汪洋","$country":"中国","$province":"浙江省","city":"杭州市","$age":"100","$gender":"男", "niu":"自定义用户属性" });
+        
+        //DATracker.people.set_populationWithAccount('hzwangyang1','汪洋','2017-10-10','男');
+        //DATracker.people.set_location('中国','浙江','杭州');
+
+        //mixpanel.identify("13794");
+       // DATracker.time_event('eventH2');
+
+        //DATracker.time_event('da_screen');
+
+</script>
+<!-- <iframe src="http://dev.hubble.netease.com:8182/analytics/loginPage" id="iframe"></iframe>
+<script>
+    document.getElementById("iframe").onload = function () {  
+      console.log("加载完成");  
+    } 
+</script>  -->
+<button style="padding: 10px; margin: 10px 0;" id="xxx">点击一下</button>
+<div><span>点了 <span class="time">-</span> 下</span></div>
+<script>
+    let button = document.querySelector('#xxx');
+    let worker = new SharedWorker('./worker.js', 'xxx7');
+    worker.port.start();
+    //worker.port.postMessage('start');
+    let time;
+    // button.addEventListener('click', function () {
+    //     worker.port.postMessage('start');
+    // });
+    let timeDom = document.querySelector('.time');
+    worker.port.onmessage = function (val) {
+        timeDom.innerHTML = val.data
+    }
+</script>
+
+    </body>
+</html>

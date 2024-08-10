@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <header>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>测试-pagetime模块</title>
+    <script src="http://127.0.0.1/build/1.6.14/DATracker.sync.js"></script>
+    <!-- <script src="https://hubble-js-bucket.nosdn.127.net/DATracker.sync.1.6.13.js"></script> -->
+
+    <script type="text/javascript">
+      // (function(document,datracker,root){function loadJsSDK(){var script,first_script;script=document.createElement("script");script.type="text/javascript";script.async=true;script.src="https://hubble-js-bucket.nosdn.127.net/DATracker.globals.1.6.13.js";first_script=document.getElementsByTagName("script")[0];first_script.parentNode.insertBefore(script,first_script)}if(!datracker["__SV"]){var win=window;var gen_fn,functions,i,lib_name="DATracker";window[lib_name]=datracker;datracker["_i"]=[];datracker["init"]=function(token,config,name){var target=datracker;if(typeof(name)!=="undefined"){target=datracker[name]=[]}else{name=lib_name}target["people"]=target["people"]||[];target["abtest"]=target["abtest"]||[];target["toString"]=function(no_stub){var str=lib_name;if(name!==lib_name){str+="."+name}if(!no_stub){str+=" (stub)"}return str};target["people"]["toString"]=function(){return target.toString(1)+".people (stub)"};function _set_and_defer(target,fn){var split=fn.split(".");if(split.length==2){target=target[split[0]];fn=split[1]}target[fn]=function(){target.push([fn].concat(Array.prototype.slice.call(arguments,0)))}}functions="get_user_id track_heatmap register_attributes register_attributes_once clear_attributes unregister_attributes current_attributes single_pageview disable time_event get_appStatus track set_userId track_pageview track_links track_forms register register_once alias unregister identify login logout signup name_tag set_config reset people.set people.set_once people.set_realname people.set_country people.set_province people.set_city people.set_age people.set_gender people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.set_populationWithAccount  people.set_location people.set_birthday people.set_region people.set_account abtest.get_variation abtest.async_get_variable".split(" ");for(i=0;i<functions.length;i++){_set_and_defer(target,functions[i])}datracker["_i"].push([token,config,name])};datracker["__SV"]=1.6;loadJsSDK()}})(document,window["DATracker"]||[],window);
+      // 初始化
+      // 注意： 在Hubble平台创建一个类型为`Web`应用，复制对应的appkey，替换下面的 `88888888`
+      // truncateLength:上报数据字段的长度设置
+      // persistence: 存储到本地的方式
+      // cross_subdomain_cookie : 若是存储到cookie，是否支持跨二级域
+      DATracker.init('MA-AD34-9A6039CC647F', {truncateLength: 255, persistence: "localStorage",
+      debug: false, 
+      pagetime: {
+        enable_pagetime: false,
+        el_duration_querySelector: ['#img1', '#img2']
+      },
+      heatmap_getdata_host: 'https://pre.hubble.netease.com',
+      heatmap_url: 'http://10.242.237.187/build/heatmap/heatmap.js',
+      img: true
+    });
+
+    //DATracker.track('test')
+
+      </script>
+
+  </header>
+<body>
+  <a href="http://10.242.237.187/tests/b.html?utm_source=测试3&utm_medium=测试3&utm_campaign=测试&utm_content=&utm_term=&product_id=1000&promotional_id=91" class="three" id="turn">广告</a>
+
+  <div>
+
+    <img src="https://hubble.netease.com/track/w/da.gif?data=eyJkYXRhVHlwZSI6ICJwdiIsInNlc3Npb25VdWlkIjogImY5ZjhjOWM1YTYxMTM5OTg3ZTdmNzU0NTNhNDFkMDhmY2Q0MjI2NWYiLCJjdXJyZW50VXJsIjogImZpbGU6Ly8vQzovV29yay8lRTclQkQlOTElRTYlOTglOTMvc2RrLWh1YmJsZURhdGEvdGVzdHMvcGFnZXRpbWUuaHRtbCIsInNka1ZlcnNpb24iOiAiMS42LjEzIiwic2RrVHlwZSI6ICJqcyIsImRldmljZU9zIjogIndpbmRvd3MiLCJkZXZpY2VPc1ZlcnNpb24iOiAiV2luMTAiLCJkZXZpY2VQbGF0Zm9ybSI6ICJ3ZWIiLCJicm93c2VyIjogImNocm9tZSIsImJyb3dzZXJWZXJzaW9uIjogIjk5LjAuNDg0NC41MSIsInNjcmVlbldpZHRoIjogMTUzNiwic2NyZWVuSGVpZ2h0IjogODY0LCJldmVudElkIjogImRhX3NjcmVlbiIsImFwcEtleSI6ICJNQS1BRDM0LTlBNjAzOUNDNjQ3RiIsInRpbWUiOiAxNjUwMjY1NTczNTgwLCJwZXJzaXN0ZWRUaW1lIjogMTY1MDI1MjYzMzQwNCwiZGV2aWNlVWRpZCI6ICI1ZDdmOGYxZGYyNTliYjY2MjIwZDYwMzdiNjRhOWZiNzI2ZTExYTIyIiwicGFnZVRpdGxlIjogIua1i%2BivlS1wYWdldGltZeaooeWdlyIsInVybFBhdGgiOiAiL0M6L1dvcmsvJUU3JUJEJTkxJUU2JTk4JTkzL3Nkay1odWJibGVEYXRhL3Rlc3RzL3BhZ2V0aW1lLmh0bWwiLCJwYWdlT3BlblNjZW5lIjogIkJyb3dzZXIiLCJzZWNvbmRMZXZlbFNvdXJjZSI6ICIifQ%3D%3D&appKey=8f24daac874cd1b1269a1ce5b22d9631e3c9cb4c&img=1&_=1650265573584" />
+
+    <div>
+      <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2.autotimes.com.cn%2Fnews%2F2021%2F10%2F1019_143408595507.jpg&refer=http%3A%2F%2Fimg2.autotimes.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1648120728&t=e17d7f84856cac01b28e8755d3cd09ed" id="img1"/> 
+    </div>
+    <div style="margin-top: 200px;">
+      <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2.autotimes.com.cn%2Fnews%2F2021%2F09%2F0921_152103937812.jpg&refer=http%3A%2F%2Fimg2.autotimes.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1648120780&t=f7a4a12f006869ad1547cc372bdd920f" id="img2" /> 
+    </div>
+    <div style="margin-top: 200px;">
+      <img src="https://img2.baidu.com/it/u=143383408,3933685655&fm=253&fmt=auto&app=120&f=JPEG?w=1139&h=770" data-hubble-el-divid="img3"/>
+    </div>
+    <div style="margin-top: 200px;">
+      <img src="https://img2.baidu.com/it/u=3747442668,2149842317&fm=253&fmt=auto&app=138&f=JPEG?w=620&h=407" data-hubble-el-divid="img4"/>
+    </div>
+  </div>
+</body>
+</html>
